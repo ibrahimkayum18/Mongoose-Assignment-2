@@ -1,4 +1,9 @@
-import dotenv from 'dotenv'
-import path, { join } from 'path'
+import dotenv from "dotenv";
+import path from "path";
 
-dotenv.config({path: path.join(process.cwd(), '.env')})
+dotenv.config({ path: path.join(process.cwd(), ".env") });
+
+export default {
+  port: process.env.PORT,
+  databane_url: process.env.DATABASE_URL,
+};
