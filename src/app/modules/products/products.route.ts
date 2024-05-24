@@ -9,4 +9,6 @@ router.get("/products", ProductsController.getProduct);
 
 router.get("/products/:id", ProductsController.getSingleProduct);
 
+router.delete("/products/:id", ProductsController.deleteSingleProduct);
+
 export const ProductsRoute = router;
