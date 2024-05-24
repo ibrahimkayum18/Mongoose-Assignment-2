@@ -17,10 +17,20 @@ const deleteSingleProductFromDB = async (id: string) => {
   const result = await ProductModel.deleteOne({ _id: id });
   return result;
 };
+const updateProductInDB = async (
+  id: string,
+  updateData: Partial<TProductInterface>
+) => {
+  const result = await ProductModel.findByIdAndUpdate({ _id: id }, updateData, {
+    upsert: true,
+  });
+  return result;
+};
 
 export const ProductServices = {
   createProductIntoDB,
   getAllProductIntoDB,
   getSingleProductIntoDB,
   deleteSingleProductFromDB,
+  updateProductInDB,
 };
