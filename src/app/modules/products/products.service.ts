@@ -21,9 +21,10 @@ const updateProductInDB = async (
   id: string,
   updateData: Partial<TProductInterface>
 ) => {
-  const result = await ProductModel.findByIdAndUpdate({ _id: id }, updateData, {
-    upsert: true,
-  });
+  const result = await ProductModel.updateOne(
+    { _id: id },
+    { $set: updateData }
+  );
   return result;
 };
 

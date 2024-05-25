@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
 import { ProductServices } from "./products.service";
+import { ProductModel } from "./product.model";
 
 // Creating product route insertion function
 const createProduct = async (req: Request, res: Response) => {
   try {
-    const { products: productsData } = req.body;
+    const productsData = req.body;
+    console.log(productsData);
 
     const result = await ProductServices.createProductIntoDB(productsData);
 
@@ -75,17 +77,23 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
 
 const updateProduct = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id;
     const updateData = req.body;
 
     const result = await ProductServices.updateProductInDB(id, updateData);
 
-    if (!result) {
-      return res.status(404).json({
-        success: false,
-        message: "Product not found",
-      });
-    }
+    // if (!result) {
+    //   return res.status(404).json({
+    //     success: false,
+    //     message: "Product not found",
+    //   });
+    // }
+
+    const updatedProduct = await ProductModel.findOne({ _id: id }).select({
+      "variants._id": 0,
+      __v: 0,
+      _id: 0,
+    });
 
     res.status(200).json({
       success: true,
