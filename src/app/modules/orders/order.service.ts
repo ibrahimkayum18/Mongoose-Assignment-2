@@ -9,8 +9,8 @@ const getAllOrderIntoDB = async () => {
   const result = await OrderModel.find();
   return result;
 };
-const getSingleOrderIntoDB = async (id: string) => {
-  const result = await OrderModel.findOne({ _id: id });
+const getSingleOrderIntoDB = async (email: string) => {
+  const result = await OrderModel.find({ email: { $in: email } });
   return result;
 };
 

@@ -35,12 +35,12 @@ const getOrders = async (req: Request, res: Response) => {
 
 const getSingleOrder = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    const result = await OrderServices.getSingleOrderIntoDB(id);
+    const { email } = req.params;
+    const result = await OrderServices.getSingleOrderIntoDB(email);
 
     res.status(200).json({
       successs: true,
-      message: "Order fetched successfully!",
+      message: "Orders fetched successfully for user email!",
       data: result,
     });
   } catch (err) {
