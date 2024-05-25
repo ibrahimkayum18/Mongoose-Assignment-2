@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { ProductServices } from "./products.service";
-import { ProductModel } from "./product.model";
 
 // Creating product route insertion function
 const createProduct = async (req: Request, res: Response) => {
@@ -88,12 +87,6 @@ const updateProduct = async (req: Request, res: Response) => {
     //     message: "Product not found",
     //   });
     // }
-
-    const updatedProduct = await ProductModel.findOne({ _id: id }).select({
-      "variants._id": 0,
-      __v: 0,
-      _id: 0,
-    });
 
     res.status(200).json({
       success: true,
