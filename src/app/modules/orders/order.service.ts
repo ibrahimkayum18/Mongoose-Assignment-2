@@ -13,9 +13,22 @@ const getSingleOrderIntoDB = async (email: string) => {
   const result = await OrderModel.find({ email: { $in: email } });
   return result;
 };
+const getSingleOrderIntoDBBySearchQuery = async (email?: string) => {
+  // console.log(email);
+  if (email) {
+    const result = await OrderModel.find({ email: email });
+    // console.log(result);
+    return result;
+  } else {
+    const result = await OrderModel.find();
+    // console.log(result);
+    return result;
+  }
+};
 
 export const OrderServices = {
   createOrderIntoDB,
   getAllOrderIntoDB,
   getSingleOrderIntoDB,
+  getSingleOrderIntoDBBySearchQuery,
 };

@@ -12,7 +12,11 @@ const createOrder = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: "Something Went Wrong Creating Order",
+      err: err,
+    });
   }
 };
 
@@ -27,7 +31,7 @@ const getOrders = async (req: Request, res: Response) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Something went wrong",
+      message: "Order not found",
       err: err,
     });
   }
@@ -46,7 +50,37 @@ const getSingleOrder = async (req: Request, res: Response) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Something went wrong",
+      message: "Order not found",
+      err: err,
+    });
+  }
+};
+
+const getSingleOrderBySearchQuery = async (req: Request, res: Response) => {
+  try {
+    const email = req.query.email as string;
+    if (email) {
+      // console.log(email);
+      const result =
+        await OrderServices.getSingleOrderIntoDBBySearchQuery(email);
+      res.status(200).json({
+        successs: true,
+        message: "Orders fetched successfully for search query by email!",
+        data: result,
+      });
+    } else {
+      const result = await OrderServices.getSingleOrderIntoDBBySearchQuery();
+      console.log(result);
+      res.status(200).json({
+        successs: true,
+        message: "Orders fetched successfully!",
+        data: result,
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Order not found",
       err: err,
     });
   }
@@ -56,4 +90,5 @@ export const OrderController = {
   createOrder,
   getOrders,
   getSingleOrder,
+  getSingleOrderBySearchQuery,
 };
