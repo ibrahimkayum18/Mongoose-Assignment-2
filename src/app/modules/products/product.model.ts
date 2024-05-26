@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 import { TProductInterface, inventoryValidation } from "./products.interface";
 
 const inventorySchema = new Schema<inventoryValidation>({
-  quantity: { type: String, required: true },
+  quantity: { type: Number, required: true },
   inStock: { type: Boolean, required: true },
 });
 

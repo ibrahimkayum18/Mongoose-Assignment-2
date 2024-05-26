@@ -1,5 +1,5 @@
 export type inventoryValidation = {
-  quantity: string;
+  quantity: number;
   inStock: boolean;
 };
 
