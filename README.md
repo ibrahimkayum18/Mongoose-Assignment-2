@@ -2,6 +2,8 @@
 
 Welcome to our Product Management API documentation! This guide outlines the various API endpoints available for managing product data within our system.
 
+**Live Server Link**: [https://assignment-2-seven-gold.vercel.app/](https://assignment-2-seven-gold.vercel.app/)
+
 ## Adding Products via POST Request
 
 To streamline the process of adding products to our system, we've implemented a POST request method. This allows for efficient and structured addition of new products. Follow the steps below to successfully add products:
