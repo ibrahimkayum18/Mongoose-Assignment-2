@@ -73,5 +73,25 @@ Send a DELETE request to the designated endpoint with the product ID specified i
 
 Upon successful submission of the DELETE request, the system will respond with a confirmation message or relevant status code indicating the success of the deletion operation. Handle any errors or exceptions gracefully to ensure proper handling of the delete operation.
 
-By following these steps, you can effectively manage product data within our system using the provided API endpoints.
+## Managing Orders
+
+In addition to product management, our API also supports order management functionalities. Here's how you can manage orders:
+
+### Adding Orders via POST Request
+
+To add orders to our system, utilize the POST request method. Ensure that your request includes all necessary information about the order and is properly validated using Zod.
+
+### Retrieving Orders
+
+1. **GET API for All Orders**: Use this endpoint to retrieve a list of all orders available in our system.
+
+    Endpoint: `/api/orders`
+
+2. **GET API for Orders by Email**: Fetch orders based on the email address of the customer. This endpoint allows for targeted retrieval of order data.
+
+    Endpoint: `/api/orders?email={customer_email}`
+
+    Replace `{customer_email}` with the email address of the customer.
+
+By following these instructions, you can efficiently manage orders within our system using the provided API endpoints.
 
